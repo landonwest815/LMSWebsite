@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<title>All Assignments</title>
+<link rel="icon" href = "/static/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+
+<!-- Insert the header code -->
+{% include 'header.html'%}
+
+<!-- Current Page displayed -->
+<main>
+    <div class="mainContent">
+    <!-- Current Page Header -->
+    <section>
+        <h1 class="pageTitle">All assignments</h1>
+    </section>
+
+    <!-- Assignment Table with Link, Due date, and Weight -->
+    <section>
+        <table class="sortable">
+            <thead>
+                <tr>
+                    <th>Assignment</th>
+                    <th class="sort-column" role="button" aria-sort="none">Due date</th>
+                    <th class="numberColumn sort-column" role="button" aria-sort="none">Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assignment in assignments %}
+                <tr data-index="{{ forloop.counter }}">
+                    <td>
+                        <a href="{{ assignment.id }}" title="Go to the relative assignment page">{{ assignment.title }}</a>
+                    </td>
+                    <td data-value="{{ assignment.deadline|date:"U" }}">{{ assignment.deadline|date:"M d" }}</td>
+                    <td class="numberColumn" data-value="{{ assignment.weight }}">{{ assignment.weight }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    </div>
+
+</main>

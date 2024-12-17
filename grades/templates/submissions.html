@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<title>Homework Submission</title>
+<link rel="icon" href = "/static/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+
+<!-- Insert the header code -->
+{% include 'header.html'%}
+
+<!-- Current Page displayed -->
+<main>
+
+    <div class="mainContent">
+    <!-- Assignment Title + Points Info -->
+    <section>
+        <h1 class="pageTitle">{{ assignment.title }}</h1>
+        <p class="pageSubtitle">All grades out of {{ assignment.points }}</p>
+    </section>  
+
+    <!-- Form containing a Table of students submissions with grade inputs-->
+    <form action="/{{ assignment.id }}/submissions" method="post">
+        {% csrf_token %}
+
+        <!-- Output element for errors (like invalid submission IDs) -->
+        {% if general_errors %}
+            {% for error in general_errors %}
+                <output class="error">{{ error }}</output><br>
+            {% endfor %}
+        {% endif %}
+
+        <section>  
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Submission</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in submissions %}
+                            <tr>
+                                <td>
+                                    <label for="grade{{ submission.id }}">{{ submission.author.get_full_name }}</label>
+                                </td>
+                                <td>
+                                    <a href="{{ submission.file.url }}">Submission</a>
+                                </td>
+                                <td>
+                                    <input 
+                                        type="number"
+                                        id="grade-{{ submission.id }}" 
+                                        name="grade-{{ submission.id }}" 
+                                        value="{{ submission.score|default:'' }}" 
+                                        min="0" 
+                                        max="{{ assignment.points }}" 
+                                        step="0.01" 
+                                    >
+                                </td>
+                                <td>
+                                    <!-- Output individual errors for this submission -->
+                                    {% for submission_id, error_list in errors.items %}
+                                        {% if submission_id == submission.id %}
+                                            {% for error in error_list %}
+                                                <output class="error">{{ error }}</output>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Buttons at bottom -->
+        <section class="submissionButtons">
+            <button type="submit">Submit</button>
+            <a href="/{{ assignment.id }}/">Back to assignment</a>
+        </section>
+    </form>
+    </div>
+
+</main>

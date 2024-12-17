@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<title>{{ assignment.title }} - CS 3550</title>
+<link rel="icon" href = "/static/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+
+<!-- Insert the header code -->
+{% include 'header.html'%}
+
+<!-- Current Page displayed -->
+<main>
+    <div class="mainContent">
+    <!-- Dynamic Assignment Title + Points Info -->
+        <section>
+            <h1 class="pageTitle">{{ assignment.title }}</h1>
+            <p class="pageSubtitle">Due {{ assignment.deadline|date:"F d, Y" }}, total of {{ assignment.points }} points</p>
+        </section>
+
+    <!-- Action Card for the signed-in user -->
+    <section class="actionCard">
+        {% if is_student or not user.is_authenticated %}
+            <div class="actionCardDescription">
+                <p>{{ submission_status }}</p>
+                {% if not past_due %}
+                <form class="async" action="/{{ assignment.id }}/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="submission_file" accept="application/pdf">
+                    <button type="submit">Submit</button>
+                </form>
+                {% endif %}
+            </div>
+        {% elif is_ta or is_superuser %}
+            <div class="actionCardDescription">
+                <p>Currently {{ total_submissions }}/{{ total_students }} submissions</p>
+                {%  if is_ta %}
+                    <p>
+                        {{ submissions_assigned_to_you }} submission{{ submissions_assigned_to_you|pluralize:"s" }} assigned to you
+                    </p>
+                {% endif %}
+            </div>
+            <a href="/{{ assignment.id }}/submissions" title="Go to the submissions page">Grade</a>
+        {% endif %}
+    </section>
+
+    <!-- Assignment Description with example image -->
+        <section>
+            <h2 class="descriptionHeading">Description</h2>
+            <p>{{ assignment.description|safe }}</p>
+            <img src="/static/assignment.png" alt="Screenshot of the assignment page for CS 3550. The page shows the assignment title as well as the due date. There is a blue box indicating 2 of 3 submissions have been made, with 1 assigned to the user (a TA in this case). A Grade link is also in this box. Lastly, the page includes a description of the assignment.">
+        </section>
+    </div>
+
+</main>

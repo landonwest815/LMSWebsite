@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+
+
+/* Phase 2 */
+body { 
+    font-family: 'IBM Plex Sans', sans-serif, system-ui;
+    line-height: 1.25;
+}
+
+code { 
+    font-family: 'IBM Plex Mono', monospace, system-ui;
+}
+
+table {
+    line-height: 1.5;
+}
+
+.navigationBanner h1 {
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.navigationBanner a {
+    color: #666666;
+    font-weight: normal;
+    font-size: 125%;
+}
+
+.pageTitle {
+    font-size: 150%;
+}
+
+.pageSubtitle {
+    font-size: 100%;
+    margin-top: 0;
+}
+
+.loginForm * {
+    font-size: 125%;
+}
+
+
+
+
+
+/* Phase 3 */
+.navigationBanner a {
+    text-decoration: none;
+}
+
+.navigationBanner a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+}
+
+.numberColumn {
+    text-align: right;
+}
+
+th {
+    text-align: left;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonRow {
+    justify-content: center;
+}
+
+.inputBox {
+    width: 50%;
+    align-self: flex-end;
+}
+
+.loginButton {
+    width: 50%;
+    align-self: center;
+}
+
+.submissionButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+
+
+
+
+/* Phase 4 */
+html, body, .navigationBanner * {
+    margin: 0;
+    padding: 0;
+}
+
+.navigationBanner {
+    background-color: #cccccc;
+    box-shadow: 0px 0px 5px #999999;
+    width: 100%;
+}
+
+.navigationBanner h1 {
+    color: #000000;
+    font-weight: bold;
+}
+
+.navigationBanner a {
+    color: #666666;
+    font-weight: normal;
+}
+
+.actionCard {
+    border: 2.5px solid #204a87;
+    background-color: #b1c3de;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+.pageTitle {
+    margin-top: 3rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+main {
+    padding: 0 1rem;
+}
+
+.descriptionHeading {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+p, a, li, table, figure, image {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
+
+/* Phase 5 */
+.navigationBanner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navigationBanner h1 {
+    display: flex;
+    align-self: center;
+}
+
+.navigationBanner ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navigationBanner nav {
+    flex-grow: 1;
+}
+
+.navigationBanner .navigationContents {
+    display: flex;
+    align-items: center;
+    max-width: 50rem;
+    width: 100%;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.actionCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.actionCardDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+main .mainContent {
+    max-width: 50rem;
+    width: 100%;
+} 
+
+@media (min-width: 52rem) {
+    .navigationBanner .navigationContents, 
+    main .mainContent {
+        max-width: 50rem; 
+        margin: 0 auto;
+    }
+}
+
+
+
+
+/* Homework 4 Changes here */
+
+input:invalid {
+    border: 2px solid red;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+th.sort-column { cursor: pointer; }
+th.sort-asc::after { content: " \25b2"; }
+th.sort-desc::after { content: " \25bc"; }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<title>Your Profile</title>
+<link rel="icon" href = "/static/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+<script type=module src="/static/main.js"></script>
+
+<!-- Insert the header code -->
+{% include 'header.html'%}
+
+<!-- Current Page displayed -->
+<main>
+
+    <div class="mainContent">
+    <!-- Current Page Header -->
+        <section>
+            <h1 class="pageTitle">Your grades</h1>
+        </section>  
+
+    <!-- Message detailing who the user is logged in as -->
+        <section class="actionCard">
+            <p>Currently logged in as {{ user.get_full_name }}</p>
+            <a href="/profile/logout" role="button">Log out</a>
+        </section>
+
+     <!-- Table listing out all assignments with status of how many have been graded (user dependent) -->
+    
+    {% if user_type == "Admin" %}
+     <table>
+        <thead>
+            <tr>
+                <th>Assignment</th>
+                <th class="numberColumn">Graded</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in assignment_details %}
+                <tr>
+                    <td>{{ detail.assignment.title }}</td>
+                    <td class="numberColumn">{{ detail.graded_submissions }} / {{ detail.total_submissions }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    {% endif %}
+    
+    {% if user_type == "TA" %}
+     <table class="sortable">
+        <thead>
+            <tr>
+                <th>Assignment</th>
+                <th class="numberColumn sort-column">Graded</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in assignment_details %}
+                <tr data-index="{{ forloop.counter }}">
+                    <td>{{ detail.assignment.title }}</td>
+                    <td class="numberColumn" data-value="{{ detail.graded_submissions }}">{{ detail.graded_submissions }} / {{ detail.total_submissions }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    {% endif %}
+    
+    {% if user_type == "Student" %}
+     <table class="sortable studentGrades">
+        <thead>
+            <tr>
+                <th>Assignment</th>
+                <th class="numberColumn sort-column" role="button" aria-sort="none">Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in assignment_details %}
+                <tr data-index="{{ forloop.counter }}">
+                    <td><a href="/{{ detail.assignment.id }}">{{ detail.assignment.title }}</a></td>
+                    <td class="numberColumn" data-weight="{{ detail.assignment.weight }}" data-value="{{ detail.submission_status }}">{{ detail.submission_status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Final Score</th>
+                <th class="numberColumn">{{ current_grade }}%</th>
+            </tr>
+        </tfoot>
+        
+    </table>
+    {% endif %}
+    
+</div>
+
+</main>
