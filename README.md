@@ -1,51 +1,52 @@
-# Web Server Project (Django)
+# 🎓 LMSWebsite – Learning Management System (Web)
 
-## Overview
+## 🌐 Overview
 
-This project is a comprehensive, Django-based web server that reflects the foundational principles and advanced concepts introduced during the course. It integrates front-end and back-end development practices, data modeling, user management, and deployment strategies. By studying and exploring this codebase, you’ll gain insight into how these topics fit together to create a functional, scalable, and secure web application.
+LMSWebsite is a simple web-based Learning Management System built using Django. It allows students and instructors to manage courses, assignments, and submissions, providing a centralized place for tracking academic progress and coursework online.
 
-## Key Topics and Concepts Covered
+Designed for clarity and straightforward navigation, the LMSWebsite is ideal for small-scale educational setups or as a project demonstration of full-stack web development using Django.
 
-### Front-End Foundations (HTML & CSS)
-- **Semantic HTML Structure:**  
-  Utilizing semantic elements for accessible, maintainable layouts.
-- **Styling with CSS:**  
-  Applying external stylesheets, mastering the box model, and employing responsive design principles.
-- **Django Templates:**  
-  Leveraging Django’s templating engine for dynamic content, reusable layouts, and DRY (Don’t Repeat Yourself) patterns.
+## 🎯 Project Objectives
 
-### Backend Architecture (Models & Views)
-- **Django Models:**  
-  Structuring relational data using Django’s ORM, defining models for Users, TAs, and Admin roles.
-- **Views & URL Routing:**  
-  Implementing function-based or class-based views, mapping URLs in `urls.py`, and maintaining logical app structure.
-- **Django Admin Site:**  
-  Taking advantage of Django’s built-in admin interface for inspecting and managing data.
+- Develop a fully functional web LMS for managing courses, assignments, and users.
+- Implement user roles (e.g., student, instructor) with different permissions.
+- Allow assignment creation, submission tracking, and grading workflows.
+- Build clear and accessible front-end templates using Django’s templating system.
 
-### Forms & Controllers
-- **Django Forms:**  
-  Creating and processing forms on the server, validating input, and integrating form data with models.
-- **Controllers (View Logic):**  
-  Connecting models, forms, and templates to handle requests and return appropriate responses.
-- **Security & Validation:**  
-  Protecting against CSRF attacks, sanitizing input, and ensuring robust form validation.
+## 🛠️ Technologies Used
 
-### User Management & Permissions
-- **Authentication System:**  
-  Implementing user login, logout, password management, and session handling.
-- **Role-Based Permissions:**  
-  Differentiating functionality for Users, TAs, and Admins, and restricting access to sensitive operations.
-- **Session Management:**  
-  Utilizing cookies and sessions to maintain user state and preferences.
+- **Languages:** Python
+- **Frameworks:** Django
+- **Frontend:** Django templates, HTML, CSS
+- **Version Control:** Git, GitHub
+- **IDE:** Visual Studio Code
 
-### JavaScript & Client-Side Interactivity
-- **Dynamic Content Updates:**  
-  Using JavaScript for asynchronous requests (AJAX), form enhancements, and DOM manipulations.
-- **Frontend Performance & Structure:**  
-  Organizing scripts and optimizing front-end code for better performance and maintainability.
+## 🧠 Key Learnings
 
-### Deployment & AWS
-- **Production-Ready Configuration:**  
-  Adjusting Django settings for production, handling static files, and enforcing security best practices.
-- **AWS Integration:**  
-  Deploying the Django application to Amazon Web Services, setting up hosting, domains, load balancing, and scaling.
+- **Django Models & Views:** Built clean models and views to represent core LMS features.
+- **User Authentication:** Implemented login, registration, and permission control using Django’s built-in auth.
+- **Form Handling:** Designed forms for assignment submission and grading.
+- **CRUD Operations:** Enabled smooth create, read, update, and delete workflows across core entities.
+- **Template Design:** Focused on building accessible, responsive pages using Django templates and Bootstrap.
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/landonwest815/LMSWebsite.git
+    ```
+
+2. **Run migrations and start the server:**
+
+    ```bash
+    python3 manage.py makemigrations
+    rm db.sqlite3
+    python3 manage.py migrate
+    python3 makedata.py
+    python manage.py runserver
+    ```
+
+4. **Access the app:**
+    - Navigate to `http://127.0.0.1:8000/` in your browser.
+    - Log in or create a user to start exploring the LMS features.
